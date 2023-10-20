@@ -6,7 +6,7 @@ import com.asad.newsapi.BuildConfig
 import com.asad.newsapi.data.network.ApiConfig
 import com.asad.newsapi.data.network.response.ArticlesItem
 
-class NewsPagingSource() : PagingSource<Int, ArticlesItem>() {
+class NewsPagingSource : PagingSource<Int, ArticlesItem>() {
 
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
@@ -32,6 +32,4 @@ class NewsPagingSource() : PagingSource<Int, ArticlesItem>() {
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
-
-
 }

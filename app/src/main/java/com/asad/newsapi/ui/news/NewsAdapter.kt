@@ -3,8 +3,6 @@ package com.asad.newsapi.ui.news
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,13 +12,8 @@ import com.asad.newsapi.databinding.ItemNewsBinding
 import com.asad.newsapi.ui.detail.DetailNewsActivity
 import com.bumptech.glide.Glide
 
-class NewsAdapter : PagingDataAdapter<ArticlesItem, NewsAdapter.NewsViewHolder>(DIFF_CALLBACK) {
-
-    private var listener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
+class NewsAdapter(val onItemClick : (ArticlesItem) -> Unit)
+    : PagingDataAdapter<ArticlesItem, NewsAdapter.NewsViewHolder>(DIFF_CALLBACK) {
 
     companion object{
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticlesItem>(){
@@ -58,15 +51,8 @@ class NewsAdapter : PagingDataAdapter<ArticlesItem, NewsAdapter.NewsViewHolder>(
                     .into(binding.imgRowNews)
             }
             itemView.setOnClickListener {
-                //listener?.onItemClick(articlesItem)
-                val intent = Intent(itemView.context, DetailNewsActivity::class.java)
-                intent.putExtra(DetailNewsActivity.ARTICLE_ITEM, articlesItem)
-                itemView.context.startActivity(intent)
+                onItemClick(articlesItem)
             }
         }
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(articlesItem: ArticlesItem)
     }
 }
