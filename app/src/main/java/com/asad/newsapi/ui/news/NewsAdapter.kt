@@ -1,6 +1,5 @@
 package com.asad.newsapi.ui.news
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -9,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.asad.newsapi.R
 import com.asad.newsapi.data.network.response.ArticlesItem
 import com.asad.newsapi.databinding.ItemNewsBinding
-import com.asad.newsapi.ui.detail.DetailNewsActivity
+import com.asad.newsapi.utils.GlobalFunction
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class NewsAdapter(val onItemClick : (ArticlesItem) -> Unit)
     : PagingDataAdapter<ArticlesItem, NewsAdapter.NewsViewHolder>(DIFF_CALLBACK) {
@@ -43,7 +44,7 @@ class NewsAdapter(val onItemClick : (ArticlesItem) -> Unit)
             with(binding){
                 tvRowSource.text = articlesItem.source?.name
                 tvRowTitle.text = articlesItem.title
-                tvRowDescription.text = articlesItem.description
+                tvRowDate.text = GlobalFunction.convertDate(articlesItem.publishedAt ?: "")
                 Glide.with(binding.root)
                     .load(articlesItem.urlToImage)
                     .placeholder(R.drawable.image_placeholder)
@@ -54,5 +55,7 @@ class NewsAdapter(val onItemClick : (ArticlesItem) -> Unit)
                 onItemClick(articlesItem)
             }
         }
+
+
     }
 }

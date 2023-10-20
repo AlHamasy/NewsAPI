@@ -16,12 +16,11 @@
         android:visibility="gone"
         tools:listitem="@layout/item_news" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_animation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ProgressBar
+        android:id="@+id/loading_bar"
         android:layout_centerInParent="true"
-        android:visibility="visible" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:id="@+id/error_view"

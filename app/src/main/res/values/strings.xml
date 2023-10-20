@@ -3,4 +3,8 @@
     <string name="row_title">UK Reveals plans to ditch parts of EU Brexit Day</string>
     <string name="row_description">Plans to ditch part of the</string>
     <string name="bbc_news_title">BBC</string>
+    <string name="author">Farhan</string>
+    <string name="date">19 Oktober 2023 10:30</string>
+    <string name="author_and_source">Author: %1$s - %2$s</string>
+    <string name="title_news_detail">News Detail</string>
 </resources>
