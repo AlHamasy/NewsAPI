@@ -7,4 +7,5 @@
     <string name="date">19 Oktober 2023 10:30</string>
     <string name="author_and_source">Author: %1$s - %2$s</string>
     <string name="title_news_detail">News Detail</string>
+    <string name="open_website">Click here to open in the browser</string>
 </resources>

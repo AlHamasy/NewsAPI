@@ -1,5 +1,7 @@
 package com.asad.newsapi.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -39,6 +41,12 @@ class DetailNewsActivity : AppCompatActivity() {
                 .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.image_error)
                 .into(imgDetail)
+
+            tvOpenWeb.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(detailData?.url)
+                startActivity(intent)
+            }
         }
     }
 

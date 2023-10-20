@@ -22,34 +22,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <LinearLayout
-        android:id="@+id/error_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="32dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/tv_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Error"
-            android:textAlignment="inherit"
-            android:textSize="16sp"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/btn_try_again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Try Again" />
-
-    </LinearLayout>
-
 </RelativeLayout>
