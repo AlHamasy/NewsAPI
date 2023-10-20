@@ -15,6 +15,8 @@ class DetailNewsActivity : AppCompatActivity() {
         binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val detailData =  intent.getParcelableExtra<ArticlesItem>(ARTICLE_ITEM)
         Toast.makeText(this, detailData?.title, Toast.LENGTH_SHORT).show()
     }
@@ -22,6 +24,7 @@ class DetailNewsActivity : AppCompatActivity() {
     companion object{
         const val ARTICLE_ITEM = "article_item"
     }
+
 
 
 }

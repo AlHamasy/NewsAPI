@@ -1,7 +1,6 @@
 package com.asad.newsapi.ui.news
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -11,7 +10,6 @@ import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.asad.newsapi.data.NewsPagingSource
 import com.asad.newsapi.data.network.response.ArticlesItem
-import com.asad.newsapi.utils.Resource
 
 class MainViewModel: ViewModel() {
 

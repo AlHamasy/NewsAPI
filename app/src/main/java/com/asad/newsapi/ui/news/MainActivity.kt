@@ -7,21 +7,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.viewModelScope
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.asad.newsapi.data.network.response.ArticlesItem
 import com.asad.newsapi.databinding.ActivityMainBinding
 import com.asad.newsapi.ui.detail.DetailNewsActivity
-import com.asad.newsapi.utils.Resource
 import com.asad.newsapi.viewmodel.ViewModelFactory
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.collectLatest
-
 class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
@@ -34,13 +24,45 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        playLoadingAnimation()
         showNewsArticle()
     }
 
-    private fun showError(){
-        binding.tvError.visibility = View.VISIBLE
-        binding.tvLoading.visibility = View.GONE
+    private fun playLoadingAnimation(){
+        binding.lottieAnimation.setAnimation("loading.json")
+        binding.lottieAnimation.playAnimation()
+        binding.lottieAnimation.loop(true)
+    }
+
+    private fun showError(message : String){
+        binding.errorView.visibility = View.VISIBLE
+        binding.lottieAnimation.visibility = View.GONE
         binding.rvNews.visibility = View.GONE
+        binding.tvError.text = message
+
+        binding.btnTryAgain.setOnClickListener {
+            Toast.makeText(this, "Try Again New", Toast.LENGTH_SHORT).show()
+            playLoadingAnimation()
+           // showNewsArticle()
+            Log.d("pressed","BTN PRESSED")
+
+            val newsAdapter = NewsAdapter{articlesItem ->
+                val intent = Intent(this@MainActivity, DetailNewsActivity::class.java)
+                intent.putExtra(DetailNewsActivity.ARTICLE_ITEM, articlesItem)
+                startActivity(intent)
+            }
+            Log.d("news","news called")
+
+            mainViewModel.newsArticles.observe(this) { data ->
+                newsAdapter.submitData(lifecycle, data)
+                Log.d("news","news view model")
+            }
+
+            binding.rvNews.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = newsAdapter
+            }
+        }
     }
 
     private fun showNewsArticle(){
@@ -51,10 +73,21 @@ class MainActivity : AppCompatActivity(){
             intent.putExtra(DetailNewsActivity.ARTICLE_ITEM, articlesItem)
             startActivity(intent)
         }
+        Log.d("news","news called")
+
+        mainViewModel.newsArticles.observe(this) { data ->
+            newsAdapter.submitData(lifecycle, data)
+            Log.d("news","news view model")
+        }
+
+        binding.rvNews.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = newsAdapter
+        }
 
         newsAdapter.addLoadStateListener {loadState ->
             if (newsAdapter.itemCount >= 1){
-                binding.tvLoading.visibility = View.GONE
+                binding.lottieAnimation.visibility = View.GONE
             }
             else {
                 val errorState = when {
@@ -64,17 +97,9 @@ class MainActivity : AppCompatActivity(){
                     else -> null
                 }
                 errorState?.let {
-                    showError()
+                    showError(it.error.message ?: "Network error")
                 }
             }
-        }
-
-        binding.rvNews.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = newsAdapter
-        }
-        mainViewModel.newsArticles.observe(this) { data ->
-            newsAdapter.submitData(lifecycle, data)
         }
     }
 
