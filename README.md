@@ -7,6 +7,7 @@ This application is designed to view a list of news articles provided by newsapi
 
 - Show list news
 - Show detail news
+- Open detail in browser
 - Paging
 
 ## Tech Stack
@@ -21,7 +22,8 @@ This application is designed to view a list of news articles provided by newsapi
 
 <p float="left">
 <img src="https://raw.githubusercontent.com/AlHamasy/NewsAPI/main/screenshot/list.jpeg" width="220" height="500" alt="List"/>
-<img src="https://raw.githubusercontent.com/AlHamasy/NewsAPI/main/screenshot/detail.jpeg" width="220" height="500" alt="Detail"/>
+<img src="https://raw.githubusercontent.com/AlHamasy/NewsAPI/main/screenshot/detail.jpg" width="220" height="500" alt="Detail"/>
+<img src="https://raw.githubusercontent.com/AlHamasy/NewsAPI/main/screenshot/browser.jpg" width="220" height="500" alt="Detail"/>
 
 
 </p>
