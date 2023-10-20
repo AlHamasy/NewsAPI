@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_row_news"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sampleimage"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView" />
+
+        <TextView
+            android:id="@+id/tv_row_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/img_row_news"
+            android:text="@string/bbc_news_title"
+            android:textColor="@color/green"
+            android:fontFamily="@font/poppins_medium" />
+
+        <TextView
+            android:id="@+id/tv_row_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_toEndOf="@+id/img_row_news"
+            android:layout_below="@id/tv_row_source"
+            android:textSize="18sp"
+            android:lines="2"
+            android:text="@string/row_title"/>
+
+        <TextView
+            android:id="@+id/tv_row_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_alignBottom="@id/img_row_news"
+            android:gravity="bottom"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/gray_200"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/img_row_news"
+            android:layout_below="@id/tv_row_title"
+            android:textSize="14sp"
+            android:text="@string/row_description"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
