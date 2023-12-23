@@ -12,11 +12,9 @@ This application is designed to view a list of news articles provided by newsapi
 
 ## Tech Stack
 
-**Language:** Kotlin
-
-**Network:** Retrofit
-
-**Architecture:** MVVM
+- Language: Kotlin
+- Network: Retrofit, OkHttp
+- Architecture: MVVM
 
 ## Screenshots
 
